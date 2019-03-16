@@ -13,7 +13,7 @@ public class CustomArFragment extends ArFragment {
         Config config = new Config(session);
         config.setUpdateMode(Config.UpdateMode.LATEST_CAMERA_IMAGE);
         config.setFocusMode(Config.FocusMode.AUTO);
-        //config.setPlaneFindingMode(Config.PlaneFindingMode.VERTICAL);
+        config.setPlaneFindingMode(Config.PlaneFindingMode.DISABLED);
         session.configure(config);
         getArSceneView().setupSession(session);
 

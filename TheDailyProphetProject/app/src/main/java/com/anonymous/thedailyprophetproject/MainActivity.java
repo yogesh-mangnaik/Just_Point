@@ -7,20 +7,18 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
-import android.view.Gravity;
-import android.view.MotionEvent;
+import android.view.View;
 import android.widget.Toast;
+
 import com.google.ar.core.Anchor;
 import com.google.ar.core.AugmentedImage;
 import com.google.ar.core.AugmentedImageDatabase;
 import com.google.ar.core.Config;
 import com.google.ar.core.Frame;
-import com.google.ar.core.HitResult;
-import com.google.ar.core.Plane;
 import com.google.ar.core.Session;
 import com.google.ar.core.TrackingState;
 import com.google.ar.sceneform.AnchorNode;
@@ -29,6 +27,7 @@ import com.google.ar.sceneform.math.Quaternion;
 import com.google.ar.sceneform.math.Vector3;
 import com.google.ar.sceneform.rendering.ModelRenderable;
 import com.google.ar.sceneform.rendering.Renderable;
+import com.google.ar.sceneform.rendering.ViewRenderable;
 import com.google.ar.sceneform.ux.ArFragment;
 import com.google.ar.sceneform.ux.TransformableNode;
 
@@ -41,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     private static final double MIN_OPENGL_VERSION = 3.0;
     ArFragment arFragment;
     boolean shouldAddModel = true;
+    View videoView;
 
     @Override
     @SuppressWarnings({"AndroidApiChecker", "FutureReturnValueIgnored"})
@@ -64,9 +64,13 @@ public class MainActivity extends AppCompatActivity {
         Collection<AugmentedImage> augmentedImages = frame.getUpdatedTrackables(AugmentedImage.class);
         for (AugmentedImage augmentedImage : augmentedImages) {
             if (augmentedImage.getTrackingState() == TrackingState.TRACKING) {
-                if (augmentedImage.getName().equals("car") && shouldAddModel) {
+                if (augmentedImage.getName().equals("card") && shouldAddModel) {
                     System.out.println("Found image");
-                    placeObject(arFragment, augmentedImage.createAnchor(augmentedImage.getCenterPose()), Uri.parse("car.sfb"));
+                    //placeObject(arFragment, augmentedImage.createAnchor(augmentedImage.getCenterPose()), Uri.parse("earth_obj.sfb"));
+                    ViewRenderable.builder()
+                            .setView(this, R.layout.business_card_layout)
+                            .build()
+                            .thenAccept(modelRenderable -> addNodeToScene(arFragment, augmentedImage.createAnchor(augmentedImage.getCenterPose()), modelRenderable));
                     shouldAddModel = false;
                 }
             }
@@ -89,11 +93,12 @@ public class MainActivity extends AppCompatActivity {
 
     private void addNodeToScene(ArFragment arFragment, Anchor anchor, Renderable renderable) {
         AnchorNode anchorNode = new AnchorNode(anchor);
-        anchorNode.setLocalRotation(Quaternion.axisAngle(new Vector3(0f,0f,-1f), 90f));
+        //anchorNode.setLocalRotation(Quaternion.axisAngle(new Vector3(0f,0f,-1f), 90f));
         TransformableNode node = new TransformableNode(arFragment.getTransformationSystem());
 
-        node.getScaleController().setMaxScale(0.04f);
-        node.getScaleController().setMinScale(0.02f);
+        node.setWorldRotation(new Quaternion(Quaternion.axisAngle(Vector3.up(), 0f)));
+        node.getScaleController().setMaxScale(0.07f);
+        node.getScaleController().setMinScale(0.01f);
 
         node.setRenderable(renderable);
         node.setParent(anchorNode);
@@ -109,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
             return false;
         }
         augmentedImageDatabase = new AugmentedImageDatabase(session);
-        augmentedImageDatabase.addImage("car", bitmap);
+        augmentedImageDatabase.addImage("card", bitmap);
         config.setAugmentedImageDatabase(augmentedImageDatabase);
         System.out.println("Augmented image database set up");
         return true;
@@ -117,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Bitmap loadAugmentedImage() {
         System.out.println("Loading Augmented Images");
-        try (InputStream is = getAssets().open("car_image.png")) {
+        try (InputStream is = getAssets().open("card.jpg")) {
             return BitmapFactory.decodeStream(is);
         } catch (IOException e) {
             Log.e("ImageLoad", "IO Exception", e);
