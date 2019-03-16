@@ -34,3 +34,13 @@ dependencies {
 }
 
 apply plugin: 'com.google.ar.sceneform.plugin'
+
+sceneform.asset('sampledata/car.obj',
+        'default',
+        'sampledata/car.sfa',
+        'src/main/assets/car')
+
+sceneform.asset('sampledata/earth_obj.obj',
+        'default',
+        'sampledata/earth_obj.sfa',
+        'src/main/assets/earth_obj')
