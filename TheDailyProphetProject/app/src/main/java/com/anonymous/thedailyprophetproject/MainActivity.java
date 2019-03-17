@@ -61,8 +61,7 @@ public class MainActivity extends AppCompatActivity {
         progressDialog.show();
 
         arFragment = (CustomArFragment) getSupportFragmentManager().findFragmentById(R.id.sceneform_fragment);
-        arFragment.getPlaneDiscoveryController().hide();xz
-                
+        arFragment.getPlaneDiscoveryController().hide();
 
         view = getLayoutInflater().inflate(R.layout.business_card_layout, null);
 
