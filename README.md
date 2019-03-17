@@ -3,9 +3,13 @@ JustPoint lets you access it's following 3 modules -
 
 ## ImmARsive News
 Interactive AR-based newspaper based on Google's [Opensource AR-Code](https://developers.google.com/ar/discover/) and Unity3D.
+![App screenshots](https://github.com/yogesh-mangnaik/Just_Point/blob/master/Screenshots/Screenshot_20190317-114819.jpg)
+![App screenshots](https://github.com/yogesh-mangnaik/Just_Point/blob/master/Screenshots/Screenshot_20190317-114840.jpg)
 
 ## Ne-AR by Treats
 Augmented restaurant reviews which lets one know the offers and ratings about nearby restaurants by scanning their logos outside the outlets.
+![App screenshots](https://github.com/yogesh-mangnaik/Just_Point/blob/master/Screenshots/Screenshot_20190317-115050.jpg)
+![App screenshots](https://github.com/yogesh-mangnaik/Just_Point/blob/master/Screenshots/Screenshot_20190317-114905.jpg)
 
 # Installation Guide:
 * To run the the project on your phone: 
