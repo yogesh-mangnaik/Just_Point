@@ -34,7 +34,7 @@ public class NavigationActivity extends AppCompatActivity {
         view3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(NavigationActivity.this, ModelActivity.class);
+                Intent i = new Intent(NavigationActivity.this, MainActivity.class);
                 startActivity(i);
             }
         });

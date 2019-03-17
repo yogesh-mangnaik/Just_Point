@@ -13,7 +13,7 @@ public class Constants {
         cards = new ArrayList<>();
         cards.add(new CardDetails("Piyush Pawar", "Team Member\nFinal Year B.Tech. I.T.\nVJTI", R.drawable.devs2, "card"));
         cards.add(new CardDetails("Yogesh Mangnaik", "Team Member\nFinal Year B.Tech. I.T.\nVJTI", R.drawable.yogesh, "yogesh"));
-        cards.add(new CardDetails("Nisarg Mistry", "Team Member\nFinal Year B.Tech. I.T.\nVJTI", R.drawable.nisarg, "nisarg"));
+        cards.add(new CardDetails("Nisarg Mistry", "Team Member\nFinal Year B.Tech. I.T.\nVJTI", R.drawable.nisarg, "piyush"));
         cardIndex = new HashMap<>();
         cardIndex.put("piyushpawar", 1);
         cardIndex.put("yogeshmangnaik", 2);

@@ -5,33 +5,37 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".NavigationActivity">
+    tools:context=".NavigationActivity"
+    android:background="@android:color/black">
 
 
-    <TextView
+    <ImageView
+        android:id="@+id/ad_button"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="@android:color/holo_blue_dark"
-        android:text="Interactive Ads"
-        android:id="@+id/ad_button"/>
+        android:scaleType="fitCenter"
+        android:src="@drawable/imageview1"
+        android:text="Interactive Ads" />
 
-    <TextView
+    <ImageView
+        android:id="@+id/shop_button"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="@android:color/holo_blue_bright"
-        android:text="Interactive 2d images"
-        android:id="@+id/shop_button"/>
+        android:scaleType="fitCenter"
+        android:src="@drawable/imageview2"
+        android:text="Interactive 2d images" />
 
 
-    <TextView
+    <ImageView
+        android:id="@+id/model_button"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="@android:color/white"
-        android:text="3d Models"
-        android:id="@+id/model_button"/>
+        android:scaleType="fitCenter"
+        android:src="@drawable/imageview3"
+        android:text="3d Models" />
 
 
 </LinearLayout>

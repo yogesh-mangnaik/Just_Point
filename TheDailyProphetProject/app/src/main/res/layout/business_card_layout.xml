@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:background="#fff"
-    android:alpha="0.9"
+    android:alpha="1"
     android:padding="8dp">
 
     <android.support.v7.widget.CardView
@@ -14,49 +14,56 @@
         android:elevation="3dp"
         android:gravity="center"
         android:background="@android:color/transparent"
-        card_view:cardCornerRadius="0dp">
+        card_view:cardCornerRadius="5dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:foregroundGravity="center_vertical|center_horizontal"
+            android:gravity="center_vertical|center"
             android:orientation="vertical">
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/second_devs"
+            <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/profile_imageview"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
+                android:layout_gravity="center_horizontal"
                 android:layout_marginTop="10dp"
                 android:src="@drawable/devs2"
-                android:layout_gravity="center_horizontal"
-                app:civ_border_width="1dp"
-                app:civ_border_color="@color/blueGray"/>
+                app:civ_border_color="@color/blueGray"
+                app:civ_border_width="1dp" />
 
             <TextView
+                android:id="@+id/name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Piyush Pawar"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="10dp"
                 android:fontFamily="sans-serif-condensed"
+                android:text="Piyush Pawar"
                 android:textSize="20sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Team Developer\nThird Year BTech Information Technology,\nVJTI, Mumbai."
                 android:layout_gravity="center_horizontal"
-                android:gravity="center_horizontal"
-                android:layout_marginTop="10dp"
                 android:layout_marginBottom="20dp"
-                android:fontFamily="sans-serif-light" />
+                android:layout_marginTop="10dp"
+                android:fontFamily="sans-serif-light"
+                android:gravity="center_horizontal"
+                android:text="Team Developer\nThird Year BTech Information Technology,\nVJTI, Mumbai." />
 
             <Button
+                android:id="@+id/button_navigate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@color/blueGray"
+                android:gravity="center"
                 android:text="Navigate"
-                android:id="@+id/button_navigate"/>
+                android:textColor="#ffffff" />
 
         </LinearLayout>
 
