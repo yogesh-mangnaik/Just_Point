@@ -8,6 +8,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -66,6 +67,8 @@ public class MainActivity extends AppCompatActivity {
             if (augmentedImage.getTrackingState() == TrackingState.TRACKING) {
                 if (augmentedImage.getName().equals("card") && shouldAddModel) {
                     System.out.println("Found image");
+                    Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                    v.vibrate(500);
                     //placeObject(arFragment, augmentedImage.createAnchor(augmentedImage.getCenterPose()), Uri.parse("earth_obj.sfb"));
                     ViewRenderable.builder()
                             .setView(this, R.layout.business_card_layout)
@@ -99,6 +102,8 @@ public class MainActivity extends AppCompatActivity {
         node.setWorldRotation(new Quaternion(Quaternion.axisAngle(Vector3.up(), 0f)));
         node.getScaleController().setMaxScale(0.07f);
         node.getScaleController().setMinScale(0.01f);
+        node.setWorldRotation(Quaternion.axisAngle(new Vector3(1f, 0f, 0f), 270));
+        node.setLocalPosition(new Vector3(0,0f,.0001f));
 
         node.setRenderable(renderable);
         node.setParent(anchorNode);
