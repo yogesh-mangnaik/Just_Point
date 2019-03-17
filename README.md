@@ -1,5 +1,6 @@
 # JustPoint
 JustPoint is your gateway to the world of Augmented Reality. By simply pointing their device, users can get an immersive experience through its modules. It brings to reality the [Daily Prophet](https://harrypotter.fandom.com/wiki/Daily_Prophet) from Harry Potter franchise.
+The demo video can be found [here](https://www.youtube.com/watch?v=GPXMpINWuVM)
 
 JustPoint lets you access it's following 3 modules - <br><br>
 ## ImmARsive News
