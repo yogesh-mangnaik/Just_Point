@@ -7,21 +7,31 @@
     android:orientation="vertical"
     tools:context=".NavigationActivity">
 
-    <ImageView
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@android:color/holo_blue_dark"
+        android:text="Interactive Ads"
+        android:id="@+id/ad_button"/>
+
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:background="@android:color/holo_blue_bright"
-        android:text="Shop"
+        android:text="Interactive 2d images"
         android:id="@+id/shop_button"/>
 
 
-    <ImageView
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="@android:color/black"
-        android:text="Business Cards"
-        android:id="@+id/card_button"/>
+        android:background="@android:color/white"
+        android:text="3d Models"
+        android:id="@+id/model_button"/>
+
 
 </LinearLayout>

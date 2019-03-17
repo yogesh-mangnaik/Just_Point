@@ -75,7 +75,9 @@ public class MainActivity extends AppCompatActivity {
         Collection<AugmentedImage> augmentedImages = frame.getUpdatedTrackables(AugmentedImage.class);
         for (AugmentedImage augmentedImage : augmentedImages) {
             if (augmentedImage.getTrackingState() == TrackingState.TRACKING) {
-                if (augmentedImage.getName().equals("card") && shouldAddModel) {
+                String name = augmentedImage.getName();
+                if(Constants.cardIndex.containsKey(name) && shouldAddModel){
+                    int index = Constants.cardIndex.get(name);
                     System.out.println("Found image");
                     Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                     v.vibrate(500);
@@ -94,6 +96,9 @@ public class MainActivity extends AppCompatActivity {
                     });
                     shouldAddModel = false;
                 }
+//                if (augmentedImage.getName().equals("card") && shouldAddModel) {
+//
+//                }
             }
         }
     }
@@ -132,21 +137,23 @@ public class MainActivity extends AppCompatActivity {
     public boolean setupAugmentedImagesDb(Config config, Session session) {
         System.out.println("Setting up Augmented image database");
         AugmentedImageDatabase augmentedImageDatabase;
-        Bitmap bitmap = loadAugmentedImage();
-        if (bitmap == null) {
-            return false;
-        }
         augmentedImageDatabase = new AugmentedImageDatabase(session);
-        augmentedImageDatabase.addImage("card", bitmap);
+        for(int i=0; i<Constants.cards.size(); i++){
+            Bitmap bitmap = loadAugmentedImage(i);
+            if (bitmap == null) {
+                return false;
+            }
+            augmentedImageDatabase.addImage(Constants.cards.get(i).augmentingImage, bitmap);
+        }
         config.setAugmentedImageDatabase(augmentedImageDatabase);
         System.out.println("Augmented image database set up");
         progressDialog.hide();
         return true;
     }
 
-    private Bitmap loadAugmentedImage() {
+    private Bitmap loadAugmentedImage(int index) {
         System.out.println("Loading Augmented Images");
-        try (InputStream is = getAssets().open("car_image.png")) {
+        try (InputStream is = getAssets().open(Constants.cards.get(index).augmentingImage+".png")) {
             return BitmapFactory.decodeStream(is);
         } catch (IOException e) {
             Log.e("ImageLoad", "IO Exception", e);
