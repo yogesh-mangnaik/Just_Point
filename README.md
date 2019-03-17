@@ -1,20 +1,22 @@
 # JustPoint
-JustPoint lets you access it's following 3 modules -
-
+JustPoint lets you access it's following 3 modules - <br><br>
 ## ImmARsive News
-Interactive AR-based newspaper based on Google's [Opensource AR-Code](https://developers.google.com/ar/discover/) and Unity3D.
-![App screenshots](https://github.com/yogesh-mangnaik/Just_Point/blob/master/Screenshots/Screenshot_20190317-114819.jpg)
-![App screenshots](https://github.com/yogesh-mangnaik/Just_Point/blob/master/Screenshots/Screenshot_20190317-114840.jpg)
+Interactive AR-based newspaper based on Google's [Opensource AR-Code](https://developers.google.com/ar/discover/) and Unity3D.<br>
+<img src="https://github.com/yogesh-mangnaik/Just_Point/blob/master/Screenshots/Screenshot_20190317-114840.jpg" width="40%">
+<img src="https://github.com/yogesh-mangnaik/Just_Point/blob/master/Screenshots/Screenshot_20190317-114819.jpg" width="40%">
 
 ## Ne-AR by Treats
-Augmented restaurant reviews which lets one know the offers and ratings about nearby restaurants by scanning their logos outside the outlets.
-![App screenshots](https://github.com/yogesh-mangnaik/Just_Point/blob/master/Screenshots/Screenshot_20190317-115050.jpg)
-![App screenshots](https://github.com/yogesh-mangnaik/Just_Point/blob/master/Screenshots/Screenshot_20190317-114905.jpg)
+Augmented restaurant reviews which lets one know the offers and ratings about nearby restaurants by scanning their logos outside the outlets.<br>
+<img src="https://github.com/yogesh-mangnaik/Just_Point/blob/master/Screenshots/Screenshot_20190317-114905.jpg" width="40%">
+<img src="https://github.com/yogesh-mangnaik/Just_Point/blob/master/Screenshots/Screenshot_20190317-115050.jpg" width="40%">
 
 # Installation Guide:
 * To run the the project on your phone: 
 * Install the two APKs
 * Run the JustPoint application
+
+# Running the Project
+* Scan the images `card.jpg, mcd.jpg` etc. present in Just_Point/tree/master/TheDailyProphetProject/app/src/main/assets
 
 ## To develop the project:
 
