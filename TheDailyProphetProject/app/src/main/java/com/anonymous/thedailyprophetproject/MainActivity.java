@@ -2,7 +2,9 @@ package com.anonymous.thedailyprophetproject;
 
 import android.app.Activity;
 import android.app.ActivityManager;
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -13,6 +15,7 @@ import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.ar.core.Anchor;
@@ -41,7 +44,8 @@ public class MainActivity extends AppCompatActivity {
     private static final double MIN_OPENGL_VERSION = 3.0;
     ArFragment arFragment;
     boolean shouldAddModel = true;
-    View videoView;
+    View view;
+    ProgressDialog progressDialog;
 
     @Override
     @SuppressWarnings({"AndroidApiChecker", "FutureReturnValueIgnored"})
@@ -52,8 +56,15 @@ public class MainActivity extends AppCompatActivity {
         }
         setContentView(R.layout.activity_main);
 
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Loading...");
+        progressDialog.show();
+
         arFragment = (CustomArFragment) getSupportFragmentManager().findFragmentById(R.id.sceneform_fragment);
-        arFragment.getPlaneDiscoveryController().hide();
+        arFragment.getPlaneDiscoveryController().hide();xz
+                
+
+        view = getLayoutInflater().inflate(R.layout.business_card_layout, null);
 
         arFragment.getArSceneView().getScene().addOnUpdateListener(this::onUpdateFrame);
 
@@ -69,11 +80,19 @@ public class MainActivity extends AppCompatActivity {
                     System.out.println("Found image");
                     Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                     v.vibrate(500);
-                    //placeObject(arFragment, augmentedImage.createAnchor(augmentedImage.getCenterPose()), Uri.parse("earth_obj.sfb"));
+                    //placeObject(arFragment, augmentedImage.createAnchor(augmentedImage.getCenterPose()), Uri.parse("Lamborghini_Aventador.sfb"));
                     ViewRenderable.builder()
-                            .setView(this, R.layout.business_card_layout)
+                            .setView(this, view)
                             .build()
                             .thenAccept(modelRenderable -> addNodeToScene(arFragment, augmentedImage.createAnchor(augmentedImage.getCenterPose()), modelRenderable));
+                    Button button = (Button) view.findViewById(R.id.button_navigate);
+                    button.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.google.com"));
+                            startActivity(i);
+                        }
+                    });
                     shouldAddModel = false;
                 }
             }
@@ -101,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
 
         node.setWorldRotation(new Quaternion(Quaternion.axisAngle(Vector3.up(), 0f)));
         node.getScaleController().setMaxScale(0.07f);
-        node.getScaleController().setMinScale(0.01f);
+        node.getScaleController().setMinScale(0.02f);
         node.setWorldRotation(Quaternion.axisAngle(new Vector3(1f, 0f, 0f), 270));
         node.setLocalPosition(new Vector3(0,0f,.0001f));
 
@@ -122,12 +141,13 @@ public class MainActivity extends AppCompatActivity {
         augmentedImageDatabase.addImage("card", bitmap);
         config.setAugmentedImageDatabase(augmentedImageDatabase);
         System.out.println("Augmented image database set up");
+        progressDialog.hide();
         return true;
     }
 
     private Bitmap loadAugmentedImage() {
         System.out.println("Loading Augmented Images");
-        try (InputStream is = getAssets().open("card.jpg")) {
+        try (InputStream is = getAssets().open("car_image.png")) {
             return BitmapFactory.decodeStream(is);
         } catch (IOException e) {
             Log.e("ImageLoad", "IO Exception", e);
